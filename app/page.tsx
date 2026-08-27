@@ -1,3 +1,5 @@
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+
 const courses = [
   { mark: "N", title: "Next.js for Production", description: "Build scalable, high-performance web applications with Next.js.", level: "Intermediate", duration: "18h 24m", modules: "12 modules", className: "next-mark" },
   { mark: "▦", title: "Docker Essentials", description: "Containerize applications and streamline your development workflow.", level: "Beginner", duration: "10h 12m", modules: "8 modules", className: "docker-mark" },
@@ -16,7 +18,7 @@ export default function Home() {
         <header className="site-header">
           <CometLogo />
           <nav className="main-nav" aria-label="Main navigation"><a className="active" href="#courses">Courses</a><a href="#learning">My Learning</a></nav>
-          <div className="header-actions"><button className="icon-button notification" aria-label="Notifications">♧<span>1</span></button><button className="profile" aria-label="Open profile">A</button></div>
+          <div className="header-actions"><button className="icon-button notification" aria-label="Notifications">♧<span>1</span></button><Show when="signed-out"><div className="auth-actions"><SignInButton mode="modal"><button className="auth-link">Sign in</button></SignInButton><SignUpButton mode="modal"><button className="auth-cta">Sign up</button></SignUpButton></div></Show><Show when="signed-in"><UserButton /></Show></div>
         </header>
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-comet" aria-hidden="true" /><div className="orbit orbit-one" aria-hidden="true" /><div className="orbit orbit-two" aria-hidden="true" />
